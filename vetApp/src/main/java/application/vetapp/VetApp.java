@@ -4,6 +4,8 @@
 
 package application.vetapp;
 
+import application.GUI.Dashboard;
+
 /**
  *
  * @author fcastillo
@@ -11,6 +13,8 @@ package application.vetapp;
 public class VetApp {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Dashboard gui = new Dashboard();
+        gui.setVisible(true);
+        gui.setLocationRelativeTo(null);
     }
 }
