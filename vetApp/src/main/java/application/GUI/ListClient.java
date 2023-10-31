@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.GUI;
+package main.java.application.GUI;
 
 /**
  *
@@ -10,11 +10,13 @@ package application.GUI;
  */
 public class ListClient extends javax.swing.JPanel {
 
+    private Dashboard dashboard;
     /**
      * Creates new form NewClient
      */
-    public ListClient() {
+    public ListClient(Dashboard dashboard) {
         initComponents();
+        this.dashboard = dashboard;
     }
 
     /**
@@ -66,6 +68,14 @@ public class ListClient extends javax.swing.JPanel {
             }
         });
 
+        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -89,9 +99,6 @@ public class ListClient extends javax.swing.JPanel {
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
-
-        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBack.setText("Cancel");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,9 +148,9 @@ public class ListClient extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNewClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewClientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNewClientActionPerformed
+    private void btnNewClientActionPerformed(java.awt.event.ActionEvent evt) {
+        dashboard.setTrueNewClient();
+    }
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -153,6 +160,9 @@ public class ListClient extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
+        dashboard.setFalseListClient();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListClients;

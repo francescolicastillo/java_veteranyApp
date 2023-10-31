@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.GUI;
+package main.java.application.GUI;
 
 /**
  *
@@ -10,10 +10,13 @@ package application.GUI;
  */
 public class LandingPanel extends javax.swing.JPanel {
 
+    private Dashboard dashboard;
+
     /**
      * Creates new form Maain
      */
-    public LandingPanel() {
+    public LandingPanel(Dashboard dashboard) {
+        this.dashboard = dashboard;
         initComponents();
     }
 
@@ -117,9 +120,9 @@ public class LandingPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClientsActionPerformed
+    private void btnClientsActionPerformed(java.awt.event.ActionEvent evt) {
+        dashboard.setTrueListClient();
+    }
 
     private void btnAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointActionPerformed
         // TODO add your handling code here:

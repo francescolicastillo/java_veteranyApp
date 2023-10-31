@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package application.vetapp;
+package main.java.application.vetapp;
 
-import application.GUI.Dashboard;
+import main.java.application.GUI.Dashboard;
 
 /**
  *
