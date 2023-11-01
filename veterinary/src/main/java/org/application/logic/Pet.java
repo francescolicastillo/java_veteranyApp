@@ -1,6 +1,12 @@
-package main.java.application.logic;
+package org.application.logic;
 
+import javax.persistence.*;
+
+@Entity
 public class Pet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int idPet;
     private String name;
     private String race;
@@ -8,6 +14,7 @@ public class Pet {
     private String allergy;
     private String speAtt;
     private String observations;
+    @OneToOne
     private Owner owner;
 
     public Pet() {

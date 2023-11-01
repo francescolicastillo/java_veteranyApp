@@ -4,7 +4,7 @@
 
 package org.application;
 
-import main.java.application.GUI.Dashboard;
+import org.application.GUI.Dashboard;
 
 /**
  *

@@ -1,4 +1,4 @@
-package main.java.application.logic;
+package org.application.logic;
 
 public class Controller {
 }
