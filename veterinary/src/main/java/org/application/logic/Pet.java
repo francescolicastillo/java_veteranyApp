@@ -13,7 +13,7 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(int idPet, String name, String race, String colour, String allergy, String speAtt, String observations) {
+    public Pet(int idPet, String name, String race, String colour, String allergy, String speAtt, String observations, Owner owner) {
         this.idPet = idPet;
         this.name = name;
         this.race = race;
@@ -21,6 +21,15 @@ public class Pet {
         this.allergy = allergy;
         this.speAtt = speAtt;
         this.observations = observations;
+        this.owner = owner;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public int getIdPet() {
