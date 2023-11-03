@@ -5,12 +5,15 @@
 package org.application.GUI;
 
 import java.awt.event.ActionEvent;
+import org.application.logic.Controller;
 
 /**
  *
  * @author fcastillo
  */
 public class NewClient extends javax.swing.JPanel {
+    
+    private Controller control = new Controller();
 
     private Dashboard dashboard;
 
@@ -221,7 +224,7 @@ public class NewClient extends javax.swing.JPanel {
                     .addComponent(btnClean, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {
         txtName.setText("");
@@ -235,7 +238,20 @@ public class NewClient extends javax.swing.JPanel {
     }
 
     private void btnSaveActionPerformed(ActionEvent evt) {
+        control.save(
+                txtName.getText(),
+                txtRace.getText(),
+                txtColour.getText(),
+                txtOwner.getText(),
+                txtPhone.getText(),
+                txtObservation.getText(),
+                cmbAllergy.getSelectedItem().toString(),
+                cmbSpeAtte.getSelectedItem().toString()
+        );
+        btnCleanActionPerformed(evt);
+        btnBackActionPerformed(evt);
     }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
         btnCleanActionPerformed(evt);
         dashboard.setFalseNewClient();

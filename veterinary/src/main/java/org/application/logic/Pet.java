@@ -1,9 +1,10 @@
 package org.application.logic;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Pet {
+public class Pet implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

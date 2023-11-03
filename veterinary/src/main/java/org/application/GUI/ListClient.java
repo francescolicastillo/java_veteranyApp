@@ -4,6 +4,10 @@
  */
 package org.application.GUI;
 
+import java.util.List;
+import org.application.logic.Controller;
+import org.application.logic.Owner;
+
 /**
  *
  * @author fcastillo
@@ -11,6 +15,7 @@ package org.application.GUI;
 public class ListClient extends javax.swing.JPanel {
 
     private Dashboard dashboard;
+    private Controller control = new Controller();
     /**
      * Creates new form NewClient
      */
@@ -37,6 +42,12 @@ public class ListClient extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+
+        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel1ComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
         jLabel1.setText("Clients");
@@ -68,14 +79,6 @@ public class ListClient extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -99,6 +102,9 @@ public class ListClient extends javax.swing.JPanel {
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
+
+        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBack.setText("Cancel");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,6 +166,10 @@ public class ListClient extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
+        loadData();
+    }//GEN-LAST:event_jPanel1ComponentShown
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
         dashboard.setFalseListClient();
     }
@@ -175,4 +185,8 @@ public class ListClient extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void loadData() {
+        List<Owner> owners = control.loadOwner();
+    }
 }
