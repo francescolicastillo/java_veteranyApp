@@ -7,6 +7,7 @@ package org.application.GUI;
 import java.util.List;
 import org.application.logic.Controller;
 import org.application.logic.Owner;
+import org.application.logic.Pet;
 
 /**
  *
@@ -53,6 +54,7 @@ public class ListClient extends javax.swing.JPanel {
         jLabel1.setText("Clients");
 
         ListClients.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ListClients.setAutoscrolls(false);
         jScrollPane2.setViewportView(ListClients);
 
         btnNewClient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -104,7 +106,12 @@ public class ListClient extends javax.swing.JPanel {
         );
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBack.setText("Cancel");
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,9 +177,10 @@ public class ListClient extends javax.swing.JPanel {
         loadData();
     }//GEN-LAST:event_jPanel1ComponentShown
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
         dashboard.setFalseListClient();
-    }
+    }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListClients;
@@ -186,7 +194,14 @@ public class ListClient extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
-    private void loadData() {
-        List<Owner> owners = control.loadOwner();
+    public void loadData() {
+        List<Pet> pets = control.getAllPets();
+        if(pets != null) {
+            String[] temp = new String[pets.size()];
+            for(int i = 0; i < pets.size(); i++){
+                temp[i] = pets.get(i).getName();
+            }
+            ListClients.setListData(temp);
+        }
     }
 }

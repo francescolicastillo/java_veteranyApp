@@ -25,7 +25,7 @@ public class Controller {
         controlPersis.save(owner,pet);
     }
 
-    public List<Owner> loadOwner() {
-        
+    public List<Pet> getAllPets() {
+        return controlPersis.getAllPets();
     }
 }

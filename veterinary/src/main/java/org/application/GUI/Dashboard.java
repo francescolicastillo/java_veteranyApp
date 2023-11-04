@@ -18,7 +18,9 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
-
+        
+        setResizable(false); 
+        
         landingPanel = new LandingPanel(this);
         landingPanel.setSize(600,500);
         landingPanel.setLocation(0,0);
@@ -73,6 +75,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void setTrueListClient(){
         landingPanel.setVisible(false);
+        listClient.loadData();
         listClient.setVisible(true);
     }
 
@@ -88,6 +91,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void setFalseNewClient() {
         listClient.setVisible(true);
+        listClient.loadData();
         newClient.setVisible(false);
     }
 
