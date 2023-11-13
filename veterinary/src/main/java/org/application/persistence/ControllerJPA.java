@@ -17,5 +17,9 @@ public class ControllerJPA {
     public List<Pet> getAllPets() {
         return petJpa.findPetEntities();
     }
+
+    public Pet getPetById(int index) {
+        return petJpa.findPet(index);
+    }
     
 }

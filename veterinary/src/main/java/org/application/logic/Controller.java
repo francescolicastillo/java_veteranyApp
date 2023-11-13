@@ -28,4 +28,8 @@ public class Controller {
     public List<Pet> getAllPets() {
         return controlPersis.getAllPets();
     }
+
+    public Pet getPet(int index) {
+        return controlPersis.getPetById(index);
+    }
 }

@@ -173,6 +173,8 @@ public class ListClient extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        int selectedPet = tblClients.getSelectedRow();
+        Pet editPet = control.getPet(selectedPet + 1);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -212,7 +214,6 @@ public class ListClient extends javax.swing.JPanel {
         tableModel.setColumnIdentifiers(titles);
         List<Pet> pets = control.getAllPets();
         if(pets != null) {
-            String[] temp = new String[pets.size()];
             for(int i = 0; i < pets.size(); i++){
                 Object[] objPet = {pets.get(i).getName(), pets.get(i).getRace(), pets.get(i).getOwner().getName(), pets.get(i).getOwner().getPhone()};
                 tableModel.addRow(objPet);
