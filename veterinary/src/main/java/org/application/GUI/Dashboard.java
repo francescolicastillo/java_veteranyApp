@@ -15,6 +15,7 @@ public class Dashboard extends javax.swing.JFrame {
     private LandingPanel landingPanel;
     private ClientsList clientList;
     private Client client;
+    private AppointmentsList appointmentList;
     /**
      * Creates new form ToolGUI
      */
@@ -40,6 +41,12 @@ public class Dashboard extends javax.swing.JFrame {
         client.setLocation(0,0);
         client.setVisible(false);
         getContentPane().add(client);
+        
+        appointmentList = new AppointmentsList(this);
+        appointmentList.setSize(600,500);
+        appointmentList.setLocation(0,0);
+        appointmentList.setVisible(false);
+        getContentPane().add(appointmentList);
     }
 
     @SuppressWarnings("unchecked")
@@ -105,5 +112,11 @@ public class Dashboard extends javax.swing.JFrame {
     public void editClient(Pet editPet) {
         setTrueNewClient();
         client.editClient(editPet);
+    }
+
+    void setTrueAppointmentsList() {
+        landingPanel.setVisible(false);
+        //appointmentList.loadData();
+        appointmentList.setVisible(true);
     }
 }

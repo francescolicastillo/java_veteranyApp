@@ -5,6 +5,8 @@
 package org.application.GUI;
 
 import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import org.application.logic.Controller;
 import org.application.logic.Owner;
@@ -24,6 +26,7 @@ public class ClientsList extends javax.swing.JPanel {
     public ClientsList(Dashboard dashboard) {
         initComponents();
         this.dashboard = dashboard;
+        tableChanged();
     }
 
     /**
@@ -64,6 +67,7 @@ public class ClientsList extends javax.swing.JPanel {
 
         btnEdit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnEdit.setText("Edit");
+        btnEdit.setEnabled(false);
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -72,6 +76,7 @@ public class ClientsList extends javax.swing.JPanel {
 
         btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setEnabled(false);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -149,7 +154,6 @@ public class ClientsList extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(btnBack)
                         .addGap(10, 10, 10)))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,14 +176,14 @@ public class ClientsList extends javax.swing.JPanel {
     }
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int selectedPet = tblClients.getSelectedRow();
-        Pet editPet = control.getPet(selectedPet + 1);
+        int selectedPet = Integer.parseInt(String.valueOf(tblClients.getValueAt(tblClients.getSelectedRow(), 0)));
+        Pet editPet = control.getPet(selectedPet);
         dashboard.editClient(editPet);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int idClient = tblClients.getSelectedRow();
-        control.deleteClient(idClient + 1);
+        int selectedPet = Integer.parseInt(String.valueOf(tblClients.getValueAt(tblClients.getSelectedRow(), 0)));
+        control.deleteClient(selectedPet);
         loadData();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -188,7 +192,6 @@ public class ClientsList extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel1ComponentShown
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
         dashboard.setFalseListClient();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -204,6 +207,16 @@ public class ClientsList extends javax.swing.JPanel {
     private javax.swing.JTable tblClients;
     // End of variables declaration//GEN-END:variables
 
+    private void tableChanged() {
+        tblClients.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        @Override
+        public void valueChanged(ListSelectionEvent event) {
+            btnEdit.setEnabled(true);
+            btnDelete.setEnabled(true);
+        }
+    });
+    }
+    
     public void loadData() {
         DefaultTableModel tableModel = new DefaultTableModel(){
             
@@ -222,5 +235,7 @@ public class ClientsList extends javax.swing.JPanel {
             }
         }
         tblClients.setModel(tableModel);
+        btnEdit.setEnabled(false);
+        btnDelete.setEnabled(false);
     }
 }

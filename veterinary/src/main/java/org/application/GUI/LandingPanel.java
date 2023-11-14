@@ -14,6 +14,7 @@ public class LandingPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form Maain
+     * @param dashboard
      */
     public LandingPanel(Dashboard dashboard) {
         this.dashboard = dashboard;
@@ -126,6 +127,7 @@ public class LandingPanel extends javax.swing.JPanel {
 
     private void btnAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointActionPerformed
         // TODO add your handling code here:
+        dashboard.setTrueAppointmentsList();
     }//GEN-LAST:event_btnAppointActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed

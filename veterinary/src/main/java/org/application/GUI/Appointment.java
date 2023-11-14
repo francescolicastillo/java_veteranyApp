@@ -8,13 +8,17 @@ package org.application.GUI;
  *
  * @author fcastillo
  */
-public class NewAppointment extends javax.swing.JPanel {
+public class Appointment extends javax.swing.JPanel {
+    
+    private Dashboard dashboard;
 
     /**
-     * Creates new form NewAppointment
+     * Creates new form AppointmentList
+     * @param dashboard
      */
-    public NewAppointment() {
+    public Appointment(Dashboard dashboard) {
         initComponents();
+        this.dashboard = dashboard;
     }
 
     /**
