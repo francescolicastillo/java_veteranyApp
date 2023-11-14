@@ -4,23 +4,27 @@
  */
 package org.application.GUI;
 
-import java.awt.event.ActionEvent;
 import org.application.logic.Controller;
+import org.application.logic.Pet;
 
 /**
  *
  * @author fcastillo
  */
-public class NewClient extends javax.swing.JPanel {
+public class Client extends javax.swing.JPanel {
     
     private Controller control = new Controller();
 
     private Dashboard dashboard = null;
+    private Boolean isEditable = false;
+    private int id;
+    private int idOwner;
 
     /**
      * Creates new form NewJPanel
+     * @param dashboard
      */
-    public NewClient(Dashboard dashboard) {
+    public Client(Dashboard dashboard) {
         initComponents();
         this.dashboard = dashboard;
     }
@@ -36,7 +40,7 @@ public class NewClient extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitel = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -63,8 +67,8 @@ public class NewClient extends javax.swing.JPanel {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
-        jLabel1.setText("New Client");
+        lblTitel.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
+        lblTitel.setText("New Client");
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBack.setText("Back");
@@ -215,7 +219,7 @@ public class NewClient extends javax.swing.JPanel {
                 .addGap(46, 46, 46)
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
                 .addGap(105, 105, 105)
@@ -234,7 +238,7 @@ public class NewClient extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack))
                 .addGap(391, 391, 391)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -261,16 +265,12 @@ public class NewClient extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCleanActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        control.save(
-                txtName.getText(),
-                txtRace.getText(),
-                txtColour.getText(),
-                txtOwner.getText(),
-                txtPhone.getText(),
-                txtObservations.getText(),
-                cmbAllergy.getSelectedItem().toString(),
-                cmbSpeAttention.getSelectedItem().toString()
-        );
+        if(isEditable){
+            saveChanges();
+        } else {
+            saveNewClient();
+        }
+        isEditable = false;
         btnCleanActionPerformed(evt);
         btnBackActionPerformed(evt);
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -287,7 +287,6 @@ public class NewClient extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cmbAllergy;
     private javax.swing.JComboBox<String> cmbSpeAttention;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -300,6 +299,7 @@ public class NewClient extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblTitel;
     private javax.swing.JTextField txtColour;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextArea txtObservations;
@@ -307,4 +307,53 @@ public class NewClient extends javax.swing.JPanel {
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtRace;
     // End of variables declaration//GEN-END:variables
+
+    void newClient() {
+        lblTitel.setText("New Client");
+        isEditable = false;
+    }
+    
+    void editClient(Pet editPet) {
+        isEditable = true;
+        id = editPet.getIdPet();
+        idOwner = editPet.getOwner().getIdOwner();
+        lblTitel.setText("Edit Client");
+        txtName.setText(editPet.getName());
+        txtRace.setText(editPet.getRace());
+        txtColour.setText(editPet.getColour());
+        txtOwner.setText(editPet.getOwner().getName());
+        txtPhone.setText(editPet.getOwner().getPhone());
+        txtObservations.setText(editPet.getObservations());
+        cmbAllergy.setSelectedItem(editPet.getAllergy());
+        cmbSpeAttention.setSelectedItem(editPet.getSpeAtt());
+    }
+
+    private void saveNewClient() {
+        control.save(
+                txtName.getText(),
+                txtRace.getText(),
+                txtColour.getText(),
+                txtOwner.getText(),
+                txtPhone.getText(),
+                txtObservations.getText(),
+                cmbAllergy.getSelectedItem().toString(),
+                cmbSpeAttention.getSelectedItem().toString()
+        );
+    }
+
+    private void saveChanges() {
+        control.saveChanges(
+                id,
+                idOwner,
+                txtName.getText(),
+                txtRace.getText(),
+                txtColour.getText(),
+                txtOwner.getText(),
+                txtPhone.getText(),
+                txtObservations.getText(),
+                cmbAllergy.getSelectedItem().toString(),
+                cmbSpeAttention.getSelectedItem().toString()
+        );
+    }
+
 }

@@ -1,6 +1,8 @@
 package org.application.persistence;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.application.logic.Owner;
 import org.application.logic.Pet;
 
@@ -20,6 +22,15 @@ public class ControllerJPA {
 
     public Pet getPetById(int index) {
         return petJpa.findPet(index);
+    }
+
+    public void put(Owner owner, Pet pet) {
+        try {
+            ownerJpa.edit(owner);
+            petJpa.edit(pet);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerJPA.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

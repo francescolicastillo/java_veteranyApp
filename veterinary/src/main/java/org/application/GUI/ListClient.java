@@ -175,6 +175,7 @@ public class ListClient extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedPet = tblClients.getSelectedRow();
         Pet editPet = control.getPet(selectedPet + 1);
+        dashboard.editClient(editPet);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

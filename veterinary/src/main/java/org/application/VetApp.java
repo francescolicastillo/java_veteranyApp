@@ -13,8 +13,6 @@ import org.application.GUI.Dashboard;
 public class VetApp {
 
     public static void main(String[] args) {
-        System.out.println("from cloed");
-                
         Dashboard gui = new Dashboard();
         gui.setVisible(true);
         gui.setLocationRelativeTo(null);

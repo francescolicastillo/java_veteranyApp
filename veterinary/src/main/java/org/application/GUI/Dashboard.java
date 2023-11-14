@@ -4,6 +4,8 @@
  */
 package org.application.GUI;
 
+import org.application.logic.Pet;
+
 /**
  *
  * @author fcastillo
@@ -12,7 +14,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private LandingPanel landingPanel;
     private ListClient listClient;
-    private NewClient newClient;
+    private Client client;
     /**
      * Creates new form ToolGUI
      */
@@ -33,11 +35,11 @@ public class Dashboard extends javax.swing.JFrame {
         listClient.setVisible(false);
         getContentPane().add(listClient);
 
-        newClient = new NewClient(this);
-        newClient.setSize(600,500);
-        newClient.setLocation(0,0);
-        newClient.setVisible(false);
-        getContentPane().add(newClient);
+        client = new Client(this);
+        client.setSize(600,500);
+        client.setLocation(0,0);
+        client.setVisible(false);
+        getContentPane().add(client);
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +75,10 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    // End of variables declaration//GEN-END:variables
+
     public void setTrueListClient(){
         landingPanel.setVisible(false);
         listClient.loadData();
@@ -85,17 +91,19 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     public void setTrueNewClient() {
+        client.newClient();
         listClient.setVisible(false);
-        newClient.setVisible(true);
+        client.setVisible(true);
     }
 
     public void setFalseNewClient() {
         listClient.setVisible(true);
         listClient.loadData();
-        newClient.setVisible(false);
+        client.setVisible(false);
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+    
+    public void editClient(Pet editPet) {
+        setTrueNewClient();
+        client.editClient(editPet);
+    }
 }
