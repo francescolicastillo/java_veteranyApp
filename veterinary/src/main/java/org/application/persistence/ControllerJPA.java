@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.application.logic.Owner;
 import org.application.logic.Pet;
+import org.application.persistence.exceptions.NonexistentEntityException;
 
 public class ControllerJPA {
     
@@ -29,6 +30,16 @@ public class ControllerJPA {
             ownerJpa.edit(owner);
             petJpa.edit(pet);
         } catch (Exception ex) {
+            Logger.getLogger(ControllerJPA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteClient(int idClient) {
+        try {
+            int idOwner = petJpa.findPet(idClient).getOwner().getIdOwner();
+            petJpa.destroy(idClient);
+            ownerJpa.destroy(idOwner);
+        } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControllerJPA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

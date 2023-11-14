@@ -14,14 +14,14 @@ import org.application.logic.Pet;
  *
  * @author fcastillo
  */
-public class ListClient extends javax.swing.JPanel {
+public class ClientsList extends javax.swing.JPanel {
 
     private Dashboard dashboard;
     private Controller control = new Controller();
     /**
      * Creates new form NewClient
      */
-    public ListClient(Dashboard dashboard) {
+    public ClientsList(Dashboard dashboard) {
         initComponents();
         this.dashboard = dashboard;
     }
@@ -172,14 +172,15 @@ public class ListClient extends javax.swing.JPanel {
     }
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
         int selectedPet = tblClients.getSelectedRow();
         Pet editPet = control.getPet(selectedPet + 1);
         dashboard.editClient(editPet);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        int idClient = tblClients.getSelectedRow();
+        control.deleteClient(idClient + 1);
+        loadData();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
@@ -211,12 +212,12 @@ public class ListClient extends javax.swing.JPanel {
                 return false;
             }
         };
-        String[] titles = {"Name", "Race", "Owner", "Phone"};
+        String[] titles = {"ID","Name", "Race", "Owner", "Phone"};
         tableModel.setColumnIdentifiers(titles);
         List<Pet> pets = control.getAllPets();
         if(pets != null) {
             for(int i = 0; i < pets.size(); i++){
-                Object[] objPet = {pets.get(i).getName(), pets.get(i).getRace(), pets.get(i).getOwner().getName(), pets.get(i).getOwner().getPhone()};
+                Object[] objPet = {pets.get(i).getIdPet(),pets.get(i).getName(), pets.get(i).getRace(), pets.get(i).getOwner().getName(), pets.get(i).getOwner().getPhone()};
                 tableModel.addRow(objPet);
             }
         }

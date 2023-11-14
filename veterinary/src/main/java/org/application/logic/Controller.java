@@ -50,4 +50,8 @@ public class Controller {
         
         controlPersis.put(owner,pet);
     }
+
+    public void deleteClient(int idClient) {
+        controlPersis.deleteClient(idClient);
+    }
 }

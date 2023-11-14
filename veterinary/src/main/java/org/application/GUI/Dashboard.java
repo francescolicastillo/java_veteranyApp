@@ -13,7 +13,7 @@ import org.application.logic.Pet;
 public class Dashboard extends javax.swing.JFrame {
 
     private LandingPanel landingPanel;
-    private ListClient listClient;
+    private ClientsList clientList;
     private Client client;
     /**
      * Creates new form ToolGUI
@@ -29,11 +29,11 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().removeAll();
         getContentPane().add(landingPanel);
 
-        listClient = new ListClient(this);
-        listClient.setSize(600,500);
-        listClient.setLocation(0,0);
-        listClient.setVisible(false);
-        getContentPane().add(listClient);
+        clientList = new ClientsList(this);
+        clientList.setSize(600,500);
+        clientList.setLocation(0,0);
+        clientList.setVisible(false);
+        getContentPane().add(clientList);
 
         client = new Client(this);
         client.setSize(600,500);
@@ -81,24 +81,24 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void setTrueListClient(){
         landingPanel.setVisible(false);
-        listClient.loadData();
-        listClient.setVisible(true);
+        clientList.loadData();
+        clientList.setVisible(true);
     }
 
     public void setFalseListClient(){
-        listClient.setVisible(false);
+        clientList.setVisible(false);
         landingPanel.setVisible(true);
     }
 
     public void setTrueNewClient() {
         client.newClient();
-        listClient.setVisible(false);
+        clientList.setVisible(false);
         client.setVisible(true);
     }
 
     public void setFalseNewClient() {
-        listClient.setVisible(true);
-        listClient.loadData();
+        clientList.setVisible(true);
+        clientList.loadData();
         client.setVisible(false);
     }
     
