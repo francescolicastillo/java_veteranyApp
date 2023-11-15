@@ -1,6 +1,8 @@
 package org.application.logic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,8 @@ public class Pet implements Serializable {
     private String observations;
     @OneToOne
     private Owner owner;
+    @OneToMany
+    private List<Appointment> appointments = new ArrayList<>();
 
     public Pet() {
     }
@@ -95,4 +99,21 @@ public class Pet implements Serializable {
     public void setObservations(String observations) {
         this.observations = observations;
     }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+    
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public void addAppointments(Appointment appointment) {
+        this.appointments.add(appointment);
+    }
+    
+    public void delete(Appointment appointment){
+        this.appointments.remove(appointment);
+    }
+    
 }
